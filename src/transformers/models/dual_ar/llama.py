@@ -73,8 +73,8 @@ class BaseModelArgs:
         self.head_dim = self.dim // self.n_head
 
     @classmethod
-    def from_dict(data: dict):
-        print(data)
+    def from_dict(**kwargs):
+        print(**kwargs)
         if "name_or_path" in data:
             print("Fuck You!")
             path = Path(data["name_or_path"])
