@@ -14,7 +14,7 @@ from torch import Tensor
 from torch.nn import functional as F
 from torch.nn.attention import SDPBackend, sdpa_kernel
 from torch.utils.checkpoint import checkpoint
-from .tokenization_auto import AutoTokenizer
+# from .tokenization_auto import AutoTokenizer
 
 from fish_speech.tokenizer import SEMANTIC_TOKENS, FishTokenizer
 from fish_speech.utils import RankedLogger
@@ -167,7 +167,8 @@ class BaseTransformer(nn.Module):
     def __init__(
         self,
         config: BaseModelArgs,
-        tokenizer: FishTokenizer | AutoTokenizer,
+        # tokenizer: FishTokenizer | AutoTokenizer,
+        tokenizer: FishTokenizer,
         init_weights: bool = True,
     ) -> None:
         super().__init__()
@@ -402,7 +403,8 @@ class BaseTransformer(nn.Module):
                 raise ValueError(f"Unknown model type: {config.model_type}")
 
         if is_agent:
-            tokenizer = AutoTokenizer.from_pretrained(str(path))
+            # tokenizer = AutoTokenizer.from_pretrained(str(path))
+            ...
         else:
             tokenizer_path = str(path) + "/tokenizer.tiktoken"
             tokenizer = FishTokenizer(tokenizer_path)
