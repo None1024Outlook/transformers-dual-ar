@@ -32,6 +32,8 @@ def find_multiple(n: int, k: int) -> int:
 
 @dataclass
 class BaseModelArgs:
+    tokenizer_class=None
+    
     model_type: str = "base"
 
     vocab_size: int = 32000
