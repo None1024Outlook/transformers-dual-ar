@@ -3,6 +3,15 @@ from typing import TYPE_CHECKING
 from ...utils import _LazyModule
 from ...utils.import_utils import define_import_structure
 
+_import_structure["dual_ar"].extend([
+    "DualARModelArgs",
+    "BaseModelArgs",
+    "NaiveModelArgs",
+    "BaseTransformer",
+    "NaiveTransformer",
+    "DualARTransformer"
+])
+
 from .llama import (
     DualARModelArgs,
     BaseModelArgs,
