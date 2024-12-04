@@ -3,6 +3,14 @@ from typing import TYPE_CHECKING
 from ...utils import _LazyModule
 from ...utils.import_utils import define_import_structure
 
+from .llama import (
+    DualARModelArgs,
+    BaseModelArgs,
+    NaiveModelArgs,
+    BaseTransformer,
+    NaiveTransformer,
+    DualARTransformer
+)
 
 if TYPE_CHECKING:
     from .llama import *
