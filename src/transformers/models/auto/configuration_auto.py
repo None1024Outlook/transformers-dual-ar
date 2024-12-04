@@ -138,7 +138,7 @@ logger = logging.get_logger(__name__)
 
 CONFIG_MAPPING_NAMES = OrderedDict(
     [
-        {"dual_ar": "DualARModelArgs"},
+        ("dual_ar", "DualARModelArgs"),
         # Add configs here
         ("albert", "AlbertConfig"),
         ("align", "AlignConfig"),
