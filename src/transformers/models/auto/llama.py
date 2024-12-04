@@ -418,6 +418,7 @@ class BaseTransformer(nn.Module):
 
         if load_weights is False:
             # log.info("Randomly initialized model")
+            ...
         else:
 
             if "int8" in str(Path(path)):
