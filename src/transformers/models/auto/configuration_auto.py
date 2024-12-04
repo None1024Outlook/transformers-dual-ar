@@ -23,6 +23,7 @@ from typing import List, Union
 
 # import .llama as LLMA
 # import fish_speech.models.text2semantic.llama as LLMA
+from dataclasses import dataclass
 @dataclass
 class DualARModelArgs(BaseModelArgs):
     model_type: str = "dual_ar"
