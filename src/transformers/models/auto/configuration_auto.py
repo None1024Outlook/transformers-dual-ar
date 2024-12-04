@@ -20,10 +20,87 @@ import re
 import warnings
 from collections import OrderedDict
 from typing import List, Union
+from dataclasses import dataclass
+from pathlib import Path
 
 # import .llama as LLMA
 # import fish_speech.models.text2semantic.llama as LLMA
-from dataclasses import dataclass
+
+def find_multiple(n: int, k: int) -> int:
+    if n % k == 0:
+        return n
+    return n + k - (n % k)
+
+@dataclass
+class BaseModelArgs:
+    model_type: str = "base"
+
+    vocab_size: int = 32000
+    n_layer: int = 32
+    n_head: int = 32
+    dim: int = 4096
+    intermediate_size: int = None
+    n_local_heads: int = -1
+    head_dim: int = 64
+    rope_base: float = 10000
+    norm_eps: float = 1e-5
+    max_seq_len: int = 2048
+    dropout: float = 0.0
+    tie_word_embeddings: bool = True
+    attention_qkv_bias: bool = False
+
+    # Codebook configs
+    codebook_size: int = 160
+    num_codebooks: int = 4
+
+    # Gradient checkpointing
+    use_gradient_checkpointing: bool = True
+
+    # Initialize the model
+    initializer_range: float = 0.02
+
+    # Dummy vars
+    is_reward_model: bool = False
+    share_codebook_embeddings: bool = True
+    scale_codebook_embeddings: bool = False
+
+    def __post_init__(self):
+        if self.n_local_heads == -1:
+            self.n_local_heads = self.n_head
+        if self.intermediate_size is None:
+            hidden_dim = 4 * self.dim
+            n_hidden = int(2 * hidden_dim / 3)
+            self.intermediate_size = find_multiple(n_hidden, 256)
+        self.head_dim = self.dim // self.n_head
+
+    @staticmethod
+    def from_pretrained(path: str):
+        path = Path(path)
+
+        if path.is_dir():
+            path = path / "config.json"
+
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        match data["model_type"]:
+            case "naive":
+                cls = NaiveModelArgs
+            case "dual_ar":
+                cls = DualARModelArgs
+            case _:
+                raise ValueError(f"Unknown model type: {data['model_type']}")
+
+        return cls(**data)
+
+    def save(self, path: str):
+        with open(path, "w") as f:
+            json.dump(self.__dict__, f, indent=4, sort_keys=True, ensure_ascii=False)
+
+@dataclass
+class NaiveModelArgs(BaseModelArgs):
+    model_type: str = "naive"
+
 @dataclass
 class DualARModelArgs(BaseModelArgs):
     model_type: str = "dual_ar"
