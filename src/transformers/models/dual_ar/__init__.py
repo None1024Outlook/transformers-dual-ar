@@ -15,9 +15,9 @@ _import_structure = {
 }
 
 from .llama import (
-    DualARModelArgs,
     BaseModelArgs,
     NaiveModelArgs,
+    DualARModelArgs,
     BaseTransformer,
     NaiveTransformer,
     DualARTransformer
