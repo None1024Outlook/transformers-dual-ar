@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from ...utils import _LazyModule
 from ...utils.import_utils import define_import_structure
 
-_import_structure["dual_ar"].extend([
+_import_structure = [
     "DualARModelArgs",
     "BaseModelArgs",
     "NaiveModelArgs",
