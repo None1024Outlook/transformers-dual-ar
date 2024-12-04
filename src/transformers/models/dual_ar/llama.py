@@ -72,6 +72,18 @@ class BaseModelArgs:
             self.intermediate_size = find_multiple(n_hidden, 256)
         self.head_dim = self.dim // self.n_head
 
+    @classmethod
+    def from_dict(data: dict):
+        match data["model_type"]:
+            case "naive":
+                cls = NaiveModelArgs
+            case "dual_ar":
+                cls = DualARModelArgs
+            case _:
+                raise ValueError(f"Unknown model type: {data['model_type']}")
+                
+        return cls(**data)
+    
     @staticmethod
     def from_pretrained(path: str):
         path = Path(path)
