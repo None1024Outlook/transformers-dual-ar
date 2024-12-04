@@ -14,7 +14,7 @@ from torch import Tensor
 from torch.nn import functional as F
 from torch.nn.attention import SDPBackend, sdpa_kernel
 from torch.utils.checkpoint import checkpoint
-from transformers import AutoTokenizer
+from ... import AutoTokenizer
 
 from fish_speech.tokenizer import SEMANTIC_TOKENS, FishTokenizer
 from fish_speech.utils import RankedLogger
