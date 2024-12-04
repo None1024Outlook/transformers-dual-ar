@@ -170,6 +170,14 @@ _import_structure = {
         "AltCLIPTextConfig",
         "AltCLIPVisionConfig",
     ],
+    "models.dual_ar": [
+        "DualARModelArgs",
+        "BaseModelArgs",
+        "NaiveModelArgs",
+        "BaseTransformer",
+        "NaiveTransformer",
+        "DualARTransformer"
+    ],
     "models.audio_spectrogram_transformer": [
         "ASTConfig",
         "ASTFeatureExtractor",
@@ -1405,6 +1413,14 @@ else:
             "AltCLIPVisionModel",
         ]
     )
+    _import_structure["models.dual_ar"].extend([
+        "DualARModelArgs",
+        "BaseModelArgs",
+        "NaiveModelArgs",
+        "BaseTransformer",
+        "NaiveTransformer",
+        "DualARTransformer"
+    ])
     _import_structure["models.audio_spectrogram_transformer"].extend(
         [
             "ASTForAudioClassification",
@@ -5025,6 +5041,14 @@ if TYPE_CHECKING:
         AltCLIPTextConfig,
         AltCLIPVisionConfig,
     )
+    from .models.dual_ar import (
+        DualARModelArgs,
+        BaseModelArgs,
+        NaiveModelArgs,
+        BaseTransformer,
+        NaiveTransformer,
+        DualARTransformer
+    )
     from .models.audio_spectrogram_transformer import (
         ASTConfig,
         ASTFeatureExtractor,
@@ -6315,6 +6339,14 @@ if TYPE_CHECKING:
             AltCLIPPreTrainedModel,
             AltCLIPTextModel,
             AltCLIPVisionModel,
+        )
+        from .models.dual_ar import (
+            DualARModelArgs,
+            BaseModelArgs,
+            NaiveModelArgs,
+            BaseTransformer,
+            NaiveTransformer,
+            DualARTransformer
         )
         from .models.audio_spectrogram_transformer import (
             ASTForAudioClassification,
