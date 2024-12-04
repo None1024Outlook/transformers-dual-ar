@@ -22,7 +22,33 @@ from collections import OrderedDict
 from typing import List, Union
 
 # import .llama as LLMA
-import fish_speech.models.text2semantic.llama as LLMA
+# import fish_speech.models.text2semantic.llama as LLMA
+@dataclass
+class DualARModelArgs(BaseModelArgs):
+    model_type: str = "dual_ar"
+    n_fast_layer: int = 4
+    fast_dim: int | None = None
+    fast_n_head: int | None = None
+    fast_n_local_heads: int | None = None
+    fast_head_dim: int | None = None
+    fast_intermediate_size: int | None = None
+    fast_attention_qkv_bias: bool | None = None
+
+    def __post_init__(self):
+        super().__post_init__()
+
+        self.fast_dim = self.fast_dim or self.dim
+        self.fast_n_head = self.fast_n_head or self.n_head
+        self.fast_n_local_heads = self.fast_n_local_heads or self.n_local_heads
+        self.fast_head_dim = self.fast_head_dim or self.head_dim
+        self.fast_intermediate_size = (
+            self.fast_intermediate_size or self.intermediate_size
+        )
+        self.fast_attention_qkv_bias = (
+            self.fast_attention_qkv_bias
+            if self.fast_attention_qkv_bias is not None
+            else self.attention_qkv_bias
+        )
 
 from ...configuration_utils import PretrainedConfig
 from ...dynamic_module_utils import get_class_from_dynamic_module, resolve_trust_remote_code
@@ -34,7 +60,7 @@ logger = logging.get_logger(__name__)
 
 CONFIG_MAPPING_NAMES = OrderedDict(
     [
-        {"dual_ar": "LLMA.DualARModelArgs"},
+        {"dual_ar": "DualARModelArgs"},
         # Add configs here
         ("albert", "AlbertConfig"),
         ("align", "AlignConfig"),
