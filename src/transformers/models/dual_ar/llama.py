@@ -73,19 +73,21 @@ class BaseModelArgs:
         self.head_dim = self.dim // self.n_head
 
     @classmethod
-    def from_dict(data: dict, **kwargs):
-        # print(*args)
-        match data["model_type"]:
-            case "naive":
-                cls = NaiveModelArgs
-            case "dual_ar":
-                cls = DualARModelArgs
-            case _:
-                raise ValueError(f"Unknown model type: {data['model_type']}")
+    def from_dict(data: dict):
+        print(data)
+        return None
+        # # print(*args)
+        # match data["model_type"]:
+        #     case "naive":
+        #         cls = NaiveModelArgs
+        #     case "dual_ar":
+        #         cls = DualARModelArgs
+        #     case _:
+        #         raise ValueError(f"Unknown model type: {data['model_type']}")
 
-        valid_keys = {f.name for f in fields(cls)}  # 获取所有合法字段名
-        filtered_data = {k: v for k, v in data.items() if k in valid_keys}  # 过滤字典
-        return cls(**filtered_data)
+        # valid_keys = {f.name for f in fields(cls)}  # 获取所有合法字段名
+        # filtered_data = {k: v for k, v in data.items() if k in valid_keys}  # 过滤字典
+        # return cls(**filtered_data)
     
     @staticmethod
     def from_pretrained(path: str):
