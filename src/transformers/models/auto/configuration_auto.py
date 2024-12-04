@@ -25,13 +25,14 @@ from ...configuration_utils import PretrainedConfig
 from ...dynamic_module_utils import get_class_from_dynamic_module, resolve_trust_remote_code
 from ...utils import CONFIG_NAME, logging
 
-import .llama
+from .llama import DualARModelArgs, DualARTransformer
 
 logger = logging.get_logger(__name__)
 
 
 CONFIG_MAPPING_NAMES = OrderedDict(
     [
+        ("dual_ar", "DualARModelArgs"),
         # Add configs here
         ("albert", "AlbertConfig"),
         ("align", "AlignConfig"),
@@ -323,6 +324,7 @@ CONFIG_MAPPING_NAMES = OrderedDict(
 
 MODEL_NAMES_MAPPING = OrderedDict(
     [
+        ("dual_ar", "DualARTransformer"),
         # Add full (and cased) model names here
         ("albert", "ALBERT"),
         ("align", "ALIGN"),
