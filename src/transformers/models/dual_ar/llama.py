@@ -73,9 +73,8 @@ class BaseModelArgs:
         self.head_dim = self.dim // self.n_head
 
     @classmethod
-    def from_dict(data: dict, name_or_path="None"):
-        print(name_or_path)
-        
+    def from_dict(data: dict, **unused_kwargs):
+        print(**unused_kwargs)
         match data["model_type"]:
             case "naive":
                 cls = NaiveModelArgs
@@ -83,7 +82,7 @@ class BaseModelArgs:
                 cls = DualARModelArgs
             case _:
                 raise ValueError(f"Unknown model type: {data['model_type']}")
-                
+
         return cls(**data)
     
     @staticmethod
