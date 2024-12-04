@@ -73,8 +73,8 @@ class BaseModelArgs:
         self.head_dim = self.dim // self.n_head
 
     @classmethod
-    def from_dict(data: dict, *args):
-        print(*args)
+    def from_dict(data: dict):
+        # print(*args)
         match data["model_type"]:
             case "naive":
                 cls = NaiveModelArgs
@@ -83,7 +83,9 @@ class BaseModelArgs:
             case _:
                 raise ValueError(f"Unknown model type: {data['model_type']}")
 
-        return cls(**data)
+        valid_keys = {f.name for f in fields(cls)}
+        filtered_data = {k: v for k, v in data.items() if k in valid_keys}
+        return cls(**filtered_data)
     
     @staticmethod
     def from_pretrained(path: str):
