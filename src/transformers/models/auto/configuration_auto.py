@@ -1026,8 +1026,8 @@ class AutoConfig:
         trust_remote_code = resolve_trust_remote_code(
             trust_remote_code, pretrained_model_name_or_path, has_local_code, has_remote_code
         )
-
-        if has_remote_code and trust_remote_code:
+        ForceUse = True
+        if (has_remote_code and trust_remote_code) or ForceUse:
             class_ref = config_dict["auto_map"]["AutoConfig"]
             config_class = get_class_from_dynamic_module(
                 class_ref, pretrained_model_name_or_path, code_revision=code_revision, **kwargs
