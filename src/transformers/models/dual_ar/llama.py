@@ -73,7 +73,7 @@ class BaseModelArgs:
         self.head_dim = self.dim // self.n_head
 
     @classmethod
-    def from_dict(data: dict, **unused_kwargs):
+    def from_dict(data: dict, **unused_kwargs=None):
         print(**unused_kwargs)
         match data["model_type"]:
             case "naive":
