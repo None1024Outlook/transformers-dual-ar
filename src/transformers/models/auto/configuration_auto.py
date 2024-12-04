@@ -1015,6 +1015,7 @@ class AutoConfig:
             kwargs["token"] = use_auth_token
 
         kwargs["_from_auto"] = True
+        print(pretrained_model_name_or_path)
         kwargs["name_or_path"] = pretrained_model_name_or_path
         trust_remote_code = kwargs.pop("trust_remote_code", None)
         code_revision = kwargs.pop("code_revision", None)
