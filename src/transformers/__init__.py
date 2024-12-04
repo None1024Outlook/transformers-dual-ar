@@ -22,6 +22,20 @@ __version__ = "4.47.0.dev0"
 
 from typing import TYPE_CHECKING
 
+from .models.auto import (
+        CONFIG_MAPPING,
+        FEATURE_EXTRACTOR_MAPPING,
+        IMAGE_PROCESSOR_MAPPING,
+        MODEL_NAMES_MAPPING,
+        PROCESSOR_MAPPING,
+        TOKENIZER_MAPPING,
+        AutoConfig,
+        AutoFeatureExtractor,
+        AutoImageProcessor,
+        AutoProcessor,
+        AutoTokenizer,
+    )
+
 # Check the dependencies satisfy the minimal versions required.
 from . import dependency_versions_check
 from .utils import (
