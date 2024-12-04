@@ -75,6 +75,27 @@ class BaseModelArgs:
     @classmethod
     def from_dict(data: dict):
         print(data)
+        if "name_or_path" in data:
+            print("Fuck You!")
+            path = Path(data["name_or_path"])
+
+            if path.is_dir():
+                path = path / "config.json"
+    
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+    
+            match data["model_type"]:
+                case "naive":
+                    cls = NaiveModelArgs
+                case "dual_ar":
+                    cls = DualARModelArgs
+                case _:
+                    raise ValueError(f"Unknown model type: {data['model_type']}")
+    
+            return cls(**data)
+
+            
         return None
         # # print(*args)
         # match data["model_type"]:
