@@ -5,11 +5,11 @@ import torch
 import torch.nn.functional as F
 from lightning.pytorch.utilities.types import OptimizerLRScheduler
 
-import fish_speech.utils as utils
+# import fish_speech.utils as utils
 from fish_speech.conversation import CODEBOOK_PAD_TOKEN_ID
 from fish_speech.models.text2semantic.llama import NaiveTransformer
 
-log = utils.RankedLogger(__name__, rank_zero_only=True)
+# log = utils.RankedLogger(__name__, rank_zero_only=True)
 
 
 class TextToSemantic(L.LightningModule):
@@ -57,7 +57,7 @@ class TextToSemantic(L.LightningModule):
 
         # Print the parameters and their weight decay
         for i in optimizer.param_groups:
-            log.info(
+            # # log.info(
                 f"Set weight decay: {i['weight_decay']} for {len(i['params'])} parameters"
             )
 
