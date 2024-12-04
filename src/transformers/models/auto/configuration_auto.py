@@ -21,7 +21,8 @@ import warnings
 from collections import OrderedDict
 from typing import List, Union
 
-import .llama as LLMA
+# import .llama as LLMA
+import fish_speech.models.text2semantic.llama as LLMA
 
 from ...configuration_utils import PretrainedConfig
 from ...dynamic_module_utils import get_class_from_dynamic_module, resolve_trust_remote_code
