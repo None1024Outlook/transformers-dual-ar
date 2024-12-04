@@ -171,9 +171,9 @@ _import_structure = {
         "AltCLIPVisionConfig",
     ],
     "models.dual_ar": [
-        "DualARModelArgs",
         "BaseModelArgs",
         "NaiveModelArgs",
+        "DualARModelArgs",
         "BaseTransformer",
         "NaiveTransformer",
         "DualARTransformer"
@@ -1414,9 +1414,9 @@ else:
         ]
     )
     _import_structure["models.dual_ar"].extend([
-        "DualARModelArgs",
         "BaseModelArgs",
         "NaiveModelArgs",
+        "DualARModelArgs",
         "BaseTransformer",
         "NaiveTransformer",
         "DualARTransformer"
@@ -5042,9 +5042,9 @@ if TYPE_CHECKING:
         AltCLIPVisionConfig,
     )
     from .models.dual_ar import (
-        DualARModelArgs,
         BaseModelArgs,
         NaiveModelArgs,
+        DualARModelArgs,
         BaseTransformer,
         NaiveTransformer,
         DualARTransformer
@@ -6341,9 +6341,9 @@ if TYPE_CHECKING:
             AltCLIPVisionModel,
         )
         from .models.dual_ar import (
-            DualARModelArgs,
             BaseModelArgs,
             NaiveModelArgs,
+            DualARModelArgs,
             BaseTransformer,
             NaiveTransformer,
             DualARTransformer
