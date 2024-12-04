@@ -17,7 +17,7 @@ from torch.utils.checkpoint import checkpoint
 # from .tokenization_auto import AutoTokenizer
 
 from fish_speech.tokenizer import SEMANTIC_TOKENS, FishTokenizer
-from fish_speech.utils import RankedLogger
+# from fish_speech.utils import RankedLogger
 
 from .lora import LoraConfig, setup_lora
 
