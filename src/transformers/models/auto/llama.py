@@ -21,7 +21,7 @@ from fish_speech.utils import RankedLogger
 
 from .lora import LoraConfig, setup_lora
 
-log = RankedLogger(__name__, rank_zero_only=True)
+# log = RankedLogger(__name__, rank_zero_only=True)
 
 
 def find_multiple(n: int, k: int) -> int:
@@ -388,11 +388,11 @@ class BaseTransformer(nn.Module):
         config = BaseModelArgs.from_pretrained(str(path))
         if max_length is not None:
             config.max_seq_len = max_length
-            log.info(f"Override max_seq_len to {max_length}")
+            # log.info(f"Override max_seq_len to {max_length}")
 
         if rope_base is not None:
             config.rope_base = rope_base
-            log.info(f"Override rope_base to {rope_base}")
+            # log.info(f"Override rope_base to {rope_base}")
 
         match config.model_type:
             case "naive":
@@ -409,15 +409,15 @@ class BaseTransformer(nn.Module):
             tokenizer_path = str(path) + "/tokenizer.tiktoken"
             tokenizer = FishTokenizer(tokenizer_path)
 
-        log.info(f"Loading model from {path}, config: {config}")
+        # log.info(f"Loading model from {path}, config: {config}")
         model = model_cls(config, tokenizer=tokenizer)
 
         if lora_config is not None:
             setup_lora(model, lora_config)
-            log.info(f"LoRA setup: {lora_config}")
+            # log.info(f"LoRA setup: {lora_config}")
 
         if load_weights is False:
-            log.info("Randomly initialized model")
+            # log.info("Randomly initialized model")
         else:
 
             if "int8" in str(Path(path)):
@@ -470,7 +470,7 @@ class BaseTransformer(nn.Module):
                     )
 
             err = model.load_state_dict(weights, strict=False, assign=True)
-            log.info(f"Loaded weights with error: {err}")
+            # log.info(f"Loaded weights with error: {err}")
 
         return model
 
@@ -487,7 +487,7 @@ class BaseTransformer(nn.Module):
                     continue
 
                 state_dict.pop(key)
-                log.info(f"Drop LoRA parameter: {key}")
+                # log.info(f"Drop LoRA parameter: {key}")
 
         torch.save(state_dict, path / "model.pth")
         self.tokenizer.save_pretrained(path)
