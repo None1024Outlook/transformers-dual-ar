@@ -1027,7 +1027,7 @@ class AutoConfig:
             trust_remote_code, pretrained_model_name_or_path, has_local_code, has_remote_code
         )
         ForceUse = True
-        if (has_remote_code and trust_remote_code) or ForceUse:
+        if has_remote_code and trust_remote_code:
             class_ref = config_dict["auto_map"]["AutoConfig"]
             config_class = get_class_from_dynamic_module(
                 class_ref, pretrained_model_name_or_path, code_revision=code_revision, **kwargs
@@ -1045,6 +1045,8 @@ class AutoConfig:
                     "issue with the checkpoint, or because your version of Transformers is out of date."
                 )
             print(config_dict)
+            if  ForceUse:
+                return config_class.from_pretrained(pretrained_model_name_or_path)
             return config_class.from_dict(config_dict, **unused_kwargs)
         else:
             # Fallback: use pattern matching on the string.
