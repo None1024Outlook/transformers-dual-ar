@@ -1043,6 +1043,7 @@ class AutoConfig:
                     "but Transformers does not recognize this architecture. This could be because of an "
                     "issue with the checkpoint, or because your version of Transformers is out of date."
                 )
+            print(config_dict)
             return config_class.from_dict(config_dict, **unused_kwargs)
         else:
             # Fallback: use pattern matching on the string.
