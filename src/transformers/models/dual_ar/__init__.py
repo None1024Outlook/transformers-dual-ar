@@ -14,14 +14,13 @@ _import_structure = {
     ]
 }
 
-from .llama import (
-    BaseModelArgs,
-    NaiveModelArgs,
-    DualARModelArgs,
-    BaseTransformer,
-    NaiveTransformer,
-    DualARTransformer
-)
+from .llama import BaseModelArgs
+from .llama import NaiveModelArgs
+from .llama import DualARModelArgs
+from .llama import BaseTransformer
+from .llama import NaiveTransformer
+from .llama import DualARTransformer
+from .llama import *
 
 if TYPE_CHECKING:
     from .llama import *
