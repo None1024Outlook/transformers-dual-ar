@@ -14,6 +14,8 @@
 
 from typing import TYPE_CHECKING
 
+from .configuration_auto import CONFIG_MAPPING, MODEL_NAMES_MAPPING, AutoConfig
+
 from ...utils import (
     OptionalDependencyNotAvailable,
     _LazyModule,
