@@ -22,6 +22,8 @@ limitations under the License.
   </picture>
   <br/>
   <br/>
+  <h2>This is an attempt to add a dual ar format model loader to transformers. The specific details have not been completed yet, please do not use it in the project</h2>
+  <h2>这是在transformers中加入dual ar格式模型加载器的一次尝试，具体细节还没有完成，请不要用于项目当中</h2>
 </p>
 
 <p align="center">
